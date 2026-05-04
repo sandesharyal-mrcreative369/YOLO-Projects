@@ -1,0 +1,8 @@
+outputs/
+*.jpg
+*.png
+*.mp4
+*.avi
+__pycache__/
+*.pyc
+.venv/
