@@ -3,13 +3,19 @@ import math
 import glob
 from ultralytics import YOLO
 import cvzone
-
+from sort import *
+import numpy as np
 
 images = sorted(glob.glob("outputs/archive/train/images/*.jpg"))
 model= YOLO("yolov8n.pt")
 
 classNames = model.names
 masked_images = cv2.imread("mask.png")
+
+#Tracking the Object
+tracker = Sort(max_age=15,min_hits=2,iou_threshold=0.3)
+
+
 
 for img_path in images:
     frame = cv2.imread(img_path)
@@ -18,6 +24,7 @@ for img_path in images:
     mask_region = cv2.bitwise_and(frame, masked_images)
     result = model(mask_region,stream=True)
 
+    list_detection = np.empty((0, 5))  #Makes empty array list
 
     for r in result:
         boxes = r.boxes
@@ -43,6 +50,16 @@ for img_path in images:
             or class_classified == "truck" and confidence>0.4:
 
                 cvzone.putTextRect(frame,f"{class_classified}",(max(0,x1),max(0,y1-10)),scale=2,offset= 2,thickness=1)
+                list_array = np.array([x1,y1,x2,y2,confidence])
+                list_detection = np.vstack((list_detection,list_array))
+
+
+    tracker_results = tracker.update(list_detection)
+
+    # For getting IDs
+    for trackers in tracker_results:
+        x1,y1,x2,y2,ID = trackers
+        print(trackers)
 
     cv2.imshow('Video', frame)
     cv2.imshow('Mask', mask_region)
