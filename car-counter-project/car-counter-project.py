@@ -15,7 +15,8 @@ masked_images = cv2.imread("mask.png")
 #Tracking the Object
 tracker = Sort(max_age=15,min_hits=2,iou_threshold=0.3)
 
-
+#line coordinates-->x1  y1  x2  y2
+line1 = [120,145,250,145]
 
 for img_path in images:
     frame = cv2.imread(img_path)
@@ -41,6 +42,9 @@ for img_path in images:
             confidence = math.ceil(box.conf[0]*100)/100
             #cvzone.putTextRect(frame,f"{confidence}%",(max(0,x1),max(0,y1-10)),1,1,offset=1)
 
+            #Drawing line
+            cv2.line(frame,(line1[0],line1[1]),(line1[2],line1[3]),(255,0,0),2)
+
             #className
             cls = int(box.cls[0])
             class_classified = classNames[cls]
@@ -49,7 +53,7 @@ for img_path in images:
             if class_classified == "car" or class_classified == "bus" \
             or class_classified == "truck" and confidence>0.4:
 
-                cvzone.putTextRect(frame,f"{class_classified}",(max(0,x1),max(0,y1-10)),scale=2,offset= 2,thickness=1)
+                #cvzone.putTextRect(frame,f"{class_classified}",(max(0,x1),max(0,y1-10)),scale=2,offset= 2,thickness=1)
                 list_array = np.array([x1,y1,x2,y2,confidence])
                 list_detection = np.vstack((list_detection,list_array))
 
@@ -59,7 +63,10 @@ for img_path in images:
     # For getting IDs
     for trackers in tracker_results:
         x1,y1,x2,y2,ID = trackers
-        print(trackers)
+        x1,y1,x2,y2 = int(x1),int(y1),int(x2),int(y2)
+        print(ID)
+        w,h = x2-x1,y2-y1
+        cvzone.putTextRect(frame,f"{ID}",(max(0,x1),max(0,y1-10)),scale=2,offset= 2,thickness=1)
 
     cv2.imshow('Video', frame)
     cv2.imshow('Mask', mask_region)
