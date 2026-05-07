@@ -20,9 +20,9 @@ Then,click on Datasets as shown on the step1.png. <br>
 
 If you are not logged in, click on **Sign In** and log into your Kaggle account.<br>
 
-After sign-in the kaggle serach Car Detection and Tracking Dataset on search bar. <br>
+After sign-in the kaggle search Car Detection and Tracking Dataset on search bar. <br>
 
-Or If you can't find out then copy and paste the link below:-
+Or If you can't find out then copy and paste the link given below:-
 - https://www.kaggle.com/datasets/amitkumargurjar/car-detection-and-tracking-dataset
 
 ![Step 2](https://github.com/sandesharyal-mrcreative369/YOLO-Projects/blob/main/car-counter-project/Datasets/step2.png)
