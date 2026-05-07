@@ -37,7 +37,7 @@ After locating the **Download** button. <br>
 
 - Click on the **Download dataset as zip** button to start downloading the dataset ZIP file. <br>
 
-![Step 3](ihttps://github.com/sandesharyal-mrcreative369/YOLO-Projects/blob/main/car-counter-project/Datasets/step3.png)
+![Step 3](https://github.com/sandesharyal-mrcreative369/YOLO-Projects/blob/main/car-counter-project/Datasets/step3.png)
 
 ---
 
