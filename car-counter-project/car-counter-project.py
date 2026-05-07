@@ -51,8 +51,7 @@ for img_path in images:
             class_classified = classNames[cls]
 
             #Checking class condition
-            if class_classified == "car" or class_classified == "bus" \
-            or class_classified == "truck" and confidence>0.4:
+            if class_classified in ["car", "bus", "truck"] and confidence > 0.4:
 
                 #cvzone.putTextRect(frame,f"{class_classified}",(max(0,x1),max(0,y1-10)),scale=2,offset= 2,thickness=1)
                 list_array = np.array([x1,y1,x2,y2,confidence])
