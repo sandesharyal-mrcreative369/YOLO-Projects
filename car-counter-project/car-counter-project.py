@@ -16,7 +16,8 @@ masked_images = cv2.imread("mask.png")
 tracker = Sort(max_age=15,min_hits=2,iou_threshold=0.3)
 
 #line coordinates-->x1  y1  x2  y2
-line1 = [120,145,250,145]
+line1 = [140,145,250,145]
+total_count= []
 
 for img_path in images:
     frame = cv2.imread(img_path)
@@ -63,10 +64,19 @@ for img_path in images:
     # For getting IDs
     for trackers in tracker_results:
         x1,y1,x2,y2,ID = trackers
-        x1,y1,x2,y2 = int(x1),int(y1),int(x2),int(y2)
+        x1,y1,x2,y2,ID = int(x1),int(y1),int(x2),int(y2),int(ID)
         print(ID)
         w,h = x2-x1,y2-y1
+        cx, cy = int(x1 + w // 2), int(y1 + h // 2)
+        cv2.circle(frame, (cx, cy), 5, (0, 0, 255), thickness=-1)
         cvzone.putTextRect(frame,f"{ID}",(max(0,x1),max(0,y1-10)),scale=2,offset= 2,thickness=1)
+
+        if line1[0] < cx < line1[2] and line1[1] - 30 < cy < line1[3] + 30:
+            if total_count.count(ID) == 0:
+                total_count.append(ID)
+
+
+    cvzone.putTextRect(frame, f"Count: {len(total_count)}", (30, 40), scale=2, offset=2, thickness=1)
 
     cv2.imshow('Video', frame)
     cv2.imshow('Mask', mask_region)
