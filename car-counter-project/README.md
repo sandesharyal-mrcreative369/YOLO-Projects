@@ -70,7 +70,7 @@ project/
 ### Clone Repository
 
 ```bash
-git clone <your-repository-link>
+git clone https://github.com/sandesharyal-mrcreative369
 ```
 
 ### Install Required Libraries
