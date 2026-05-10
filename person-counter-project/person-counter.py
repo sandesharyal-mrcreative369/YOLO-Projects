@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from ultralytics import YOLO
 import cvzone
+import math
 
 #For tracking the object
 from sort import *
@@ -44,10 +45,11 @@ while True:
 
     pic = cv2.resize(pic, (640, 480))
     masked_images = cv2.resize(masked_images, (640, 480))
-    masked_region = cv2.bitwise_and(pic,pic,mask=masked_images)
-    
+    masked_region = cv2.bitwise_and(pic,masked_images)
+
     results = model(masked_region,stream=True)
 
+    list_detection = np.empty((0,5))   #Makes empty array list
 
     for r in results:
         boxes = r.boxes
@@ -59,6 +61,27 @@ while True:
 
             #Drawing rectangle for detected object
             cvzone.cornerRect(pic,(x1,y1,w,h),l=5,t=2)
+
+            # Detection confidence
+            confidence = math.ceil(box.conf[0] * 100) / 100
+
+            list_array = np.array([x1,y1,x2,y2,confidence])
+            list_detection = np.vstack((list_detection,list_array))
+
+    #Update tracker
+    tracker_result = tracker.update(list_detection)
+    print(tracker_result)
+
+    for result in tracker_result:
+        x1,y1,x2,y2,id = result
+        x1,y1,x2,y2,id = int(x1),int(y1),int(x2),int(y2),int(id)
+
+        w,h = x2-x1,y2-y1
+
+        cx,cy = int(x1+w //2) , int(y1+h //2)
+        cv2.circle(pic,(cx,cy),5,(0,0,255),-1)
+
+        
 
     #Drawing Lines for counting
     cv2.line(pic,(line1[0],line1[1]),(line1[2],line1[3]),color=(0,0,255),thickness=2)
