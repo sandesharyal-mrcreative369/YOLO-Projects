@@ -81,7 +81,13 @@ while True:
         cx,cy = int(x1+w //2) , int(y1+h //2)
         cv2.circle(pic,(cx,cy),5,(0,0,255),-1)
 
-        
+        # For counting up
+        if line1[0] < cx < line1[2] and line1[1] - 50 < cy < line1[3] + 50:
+
+            if counter_up.count(id) == 0:
+                counter_up.append(id)
+
+        cv2.putText(pic, f"UP:{len(counter_up)}", (20, 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
     #Drawing Lines for counting
     cv2.line(pic,(line1[0],line1[1]),(line1[2],line1[3]),color=(0,0,255),thickness=2)
