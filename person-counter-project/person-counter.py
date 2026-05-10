@@ -3,15 +3,38 @@ import numpy as np
 from ultralytics import YOLO
 import cvzone
 
+#For tracking the object
+from sort import *
+
 model = YOLO("yolov8n.pt")
 
 #Importing Video
 video = cv2.VideoCapture("people.mp4")
 
+#Adding masked images for focused detection part
+masked_images = cv2.imread("mask.png")
+
+
+# ------------------------------------------------------------
+# OBJECT TRACKER
+# ------------------------------------------------------------
+# SORT Tracker Parameters:
+# max_age      -> Maximum frames to keep lost object
+# min_hits     -> Minimum detections before tracking starts
+# iou_threshold-> Matching threshold between detections
+tracker = Sort(max_age=15,min_hits=2,iou_threshold=0.3)
+
+
+
 #Line Coordinates
 #Format = x1, y1 ,x2 ,y2
 line1 = [250,290,350,290]
 line2 = [100,240,200,240]
+
+
+#For counting the no.of objects
+counter_up = []
+counter_down = []
 
 while True:
     success , pic = video.read()
