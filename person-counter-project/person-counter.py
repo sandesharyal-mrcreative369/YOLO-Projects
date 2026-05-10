@@ -89,6 +89,14 @@ while True:
 
         cv2.putText(pic, f"Down:{len(counter_down)}", (20, 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
+        # For counting UP
+        if line2[0] < cx < line2[2] and line2[1] - 50 < cy < line2[3] + 50:
+
+            if counter_up.count(id) == 0:
+                counter_up.append(id)
+
+        cv2.putText(pic, f"UP:{len(counter_up)}", (20, 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+
     #Drawing Lines for counting
     cv2.line(pic,(line1[0],line1[1]),(line1[2],line1[3]),color=(0,0,255),thickness=2)
     cv2.line(pic,(line2[0],line2[1]),(line2[2],line2[3]),color=(0,255,0),thickness=2)
