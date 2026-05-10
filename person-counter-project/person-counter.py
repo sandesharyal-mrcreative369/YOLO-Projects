@@ -29,8 +29,8 @@ tracker = Sort(max_age=15,min_hits=2,iou_threshold=0.3)
 
 #Line Coordinates
 #Format = x1, y1 ,x2 ,y2
-line1 = [250,290,350,290]
-line2 = [100,240,200,240]
+line1 = [250,290,350,290]   #For Down
+line2 = [100,240,200,240]   #For UP
 
 
 #For counting the no.of objects
@@ -81,13 +81,13 @@ while True:
         cx,cy = int(x1+w //2) , int(y1+h //2)
         cv2.circle(pic,(cx,cy),5,(0,0,255),-1)
 
-        # For counting up
+        # For counting down
         if line1[0] < cx < line1[2] and line1[1] - 50 < cy < line1[3] + 50:
 
-            if counter_up.count(id) == 0:
-                counter_up.append(id)
+            if counter_down.count(id) == 0:
+                counter_down.append(id)
 
-        cv2.putText(pic, f"UP:{len(counter_up)}", (20, 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+        cv2.putText(pic, f"Down:{len(counter_down)}", (20, 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
     #Drawing Lines for counting
     cv2.line(pic,(line1[0],line1[1]),(line1[2],line1[3]),color=(0,0,255),thickness=2)
