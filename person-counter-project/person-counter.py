@@ -43,7 +43,10 @@ while True:
         continue
 
     pic = cv2.resize(pic, (640, 480))
-    results = model(pic,stream=True)
+    masked_images = cv2.resize(masked_images, (640, 480))
+    masked_region = cv2.bitwise_and(pic,pic,mask=masked_images)
+    
+    results = model(masked_region,stream=True)
 
 
     for r in results:
