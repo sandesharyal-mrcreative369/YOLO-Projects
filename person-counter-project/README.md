@@ -77,20 +77,20 @@ results/
 Example:
 
 ```bash
-results/first_result.png
-results/second_result.png
+https://github.com/sandesharyal-mrcreative369/YOLO-Projects/blob/main/person-counter-project/results/first_result.png
+https://github.com/sandesharyal-mrcreative369/YOLO-Projects/blob/main/person-counter-project/results/second_result.png
 ```
 
 Then use in README:
 
 ```markdown
-![Output](results/first_result.png)
+![Output](https://github.com/sandesharyal-mrcreative369/YOLO-Projects/blob/main/person-counter-project/results/first_result.png)
 ```
 
 # Note
 This video is taken from source: https://www.computervision.zone/topic/demo-videos/
 
-![Ouput](results/people.mp4)
+https://github.com/sandesharyal-mrcreative369/YOLO-Projects/blob/main/person-counter-project/results/people.mp4
 
 
 
