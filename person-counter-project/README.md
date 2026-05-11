@@ -77,14 +77,15 @@ results/
 Example:
 
 ```bash
-https://github.com/sandesharyal-mrcreative369/YOLO-Projects/blob/main/person-counter-project/results/first_result.png
-https://github.com/sandesharyal-mrcreative369/YOLO-Projects/blob/main/person-counter-project/results/second_result.png
+![Open Image](https://github.com/sandesharyal-mrcreative369/YOLO-Projects/blob/main/person-counter-project/results/first_result.png)
+
+![Open Image](https://github.com/sandesharyal-mrcreative369/YOLO-Projects/blob/main/person-counter-project/results/second_result.png)
 ```
 
 Then use in README:
 
 ```markdown
-![Output](https://github.com/sandesharyal-mrcreative369/YOLO-Projects/blob/main/person-counter-project/results/first_result.png)
+![Open Image](https://github.com/sandesharyal-mrcreative369/YOLO-Projects/blob/main/person-counter-project/results/first_result.png)
 ```
 
 # Note
