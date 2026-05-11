@@ -10,10 +10,10 @@ from sort import *
 model = YOLO("yolov8n.pt")
 
 #Importing Video
-video = cv2.VideoCapture("people.mp4")
+video = cv2.VideoCapture("results/people.mp4")
 
 #Adding masked images for focused detection part
-masked_images = cv2.imread("mask.png")
+masked_images = cv2.imread("results/mask.png")
 
 
 # ------------------------------------------------------------
@@ -92,8 +92,8 @@ while True:
             if counter_down.count(id) == 0:
                 counter_down.append(id)
 
-        #Display counter on screen
-        cv2.putText(pic, f"Down:{len(counter_down)}", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+        # Display counter Down on screen
+        cv2.putText(pic, f"Down:{len(counter_down)}", (500, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
         # For counting UP
         if line2[0] < cx < line2[2] and line2[1] - 50 < cy < line2[3] + 50:
@@ -102,8 +102,9 @@ while True:
             if counter_up.count(id) == 0:
                 counter_up.append(id)
 
-        #Display counter on screen
-        cv2.putText(pic, f"UP:{len(counter_up)}", (550, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+    # Display counter UP on screen
+    cv2.putText(pic, f"UP:{len(counter_up)}", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+
 
     #Drawing Lines for counting
 
