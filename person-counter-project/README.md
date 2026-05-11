@@ -87,10 +87,11 @@ Then use in README:
 ![Output](results/first_result.png)
 ```
 
-```video
-This video is taken from source: "https://www.computervision.zone/topic/demo-videos/"
-![Output](results/people.mp4)
-```
+# Note
+This video is taken from source: https://www.computervision.zone/topic/demo-videos/
+
+![Ouput](results/people.mp4)
+
 
 
 # 🚀 Future Improvements
